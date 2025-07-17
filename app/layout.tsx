@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   title: "Graille Zone | Street Food à Cestas",
   description:
     "Graille Zone - Le meilleur de la street food à Cestas : burgers, tacos et sandwiches faits maison, frais et gourmands.",
-  metadataBase: new URL("https://graille-zone.vercel.app"), // ✅ Vercel domain pour l’instant
+  metadataBase: new URL("https://graille-zone.vercel.app"),
   openGraph: {
     title: "Graille Zone | Street Food à Cestas",
     description:
@@ -41,7 +42,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  themeColor: "#f3df00",
   robots: "index, follow",
   keywords: [
     "Graille Zone",
@@ -58,15 +58,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="fr" dir="ltr">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div id="modal-root" />
         <Header />

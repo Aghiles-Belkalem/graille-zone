@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import styles from "../contactModal/contactModal.module.css";
 
 type ContactModalProps = {
   isOpen: boolean;
@@ -21,31 +20,31 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   return (
     <div
-      className={styles.overlay}
+      className="modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
     >
       <div
-        className={styles.modal}
+        className="modal-content"
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
       >
         <button
           aria-label="Fermer le formulaire"
-          className={styles.closeBtn}
+          className="modal-close"
           onClick={onClose}
         >
           ×
         </button>
-        <h2 id="contact-modal-title" className={styles.title}>
+        <h2 id="contact-modal-title" className="modal-title">
           Contactez-nous
         </h2>
         <form
           action="https://formsubmit.co/graillezone33@gmail.com"
           method="POST"
-          className={styles.form}
+          className="modal-form"
         >
           <input type="hidden" name="_captcha" value="false" />
           <label htmlFor="name">Nom</label>
@@ -54,7 +53,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <input id="email" name="email" type="email" required />
           <label htmlFor="message">Message</label>
           <textarea id="message" name="message" rows={4} required />
-          <button type="submit" className={styles.submitBtn}>
+          <button type="submit" className="submit-btn">
             Envoyer
           </button>
         </form>
