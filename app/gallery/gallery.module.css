@@ -1,0 +1,117 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+ 
+}
+
+/* Image miniature */
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid var(--color-yellow-bg);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--color-black-text);
+}
+
+.thumb:hover,
+.thumb:focus-visible {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+/* === MODALE === */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 26, 26, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  cursor: zoom-out;
+}
+
+/* Contenu de la modale */
+.modalContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 20px var(--color-yellow-bg);
+  background-color: var(--color-black-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Image dans la modale */
+.modalContent img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* Bouton de fermeture */
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--color-yellow-bg);
+  color: var(--color-black-text);
+  font-size: 2rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+  background-color: #e0d100;
+  outline: none;
+}
+
+/* === RESPONSIVE === */
+
+@media (min-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery {
+        margin-top: 1rem;
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .closeBtn {
+    width: 48px;
+    height: 48px;
+    font-size: 2.2rem;
+  }
+}
+
+

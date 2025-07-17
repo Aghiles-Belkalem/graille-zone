@@ -1,95 +1,108 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import styles from "./page.module.css";
+import dynamic from "next/dynamic";
+import styles from "./home.module.css";
 
-export default function Home() {
+import Header from "../components/header/page";
+import Footer from "../components/footer/page";
+import ContactModal from "../components/contactModal/contactModal";
+import Reviews from "@/components/reviews/reviews";
+
+// Import dynamique de la modale d’image (via portail React)
+const ImageModal = dynamic(() => import("../components/imageModal/imageModal"), {
+  ssr: false,
+});
+
+export default function HomePage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null);
+
+  const [isContactModalOpen, setContactModalOpen] = useState(false);
+  const openContactModal = () => setContactModalOpen(true);
+  const closeContactModal = () => setContactModalOpen(false);
+
+  function openImageModal(src: string, alt: string) {
+    setModalImage({ src, alt });
+    setIsModalOpen(true);
+  }
+
+  function closeImageModal() {
+    setIsModalOpen(false);
+    setModalImage(null);
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+      <main className={styles.main}>
+        {/* Hero */}
+        <section className={styles.hero}>
+          <div className={styles.heroContent}>
+            <h1>Graille Zone - Street Food à Cestas</h1>
+            <p>Des burgers, tacos & sandwiches faits maison, frais et gourmands.</p>
+            <button className={styles.btn} onClick={openContactModal}>
+              Contacter
+            </button>
+          </div>
+          <div className={styles.heroImage}>
             <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/images/graille zone vitrine.webp"
+              alt="Façade du restaurant Graille Zone"
+              fill
+              style={{ objectFit: "cover" }}
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+          </div>
+        </section>
+
+        {/* Menus */}
+        <section className={styles.prepSection}>
+          <h2>Nos Menus</h2>
+          <div className={styles.imageCircleContainer}>
+            {[
+              {
+                src: "/images/graille zone riz menu.jpg",
+                alt: "Menu Riz"
+              },
+              {
+                src: "/images/graille zone menu 2.avif",
+                alt: "Menu Sandwich"
+              },
+              {
+                src: "/images/graille zone menu 3.avif",
+                alt: "Menu Tacos"
+              }
+            ].map((img, idx) => (
+              <div
+                key={idx}
+                className={styles.imageCircle}
+                onClick={() => openImageModal(img.src, img.alt)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={150}
+                  height={150}
+                  className={styles.roundImage}
+                  priority
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+         <Reviews />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
+
+      {isModalOpen && modalImage && (
+        <ImageModal src={modalImage.src} alt={modalImage.alt} onClose={closeImageModal} />
+      )}
+    </>
   );
 }
+
+
+
+

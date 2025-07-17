@@ -1,0 +1,76 @@
+.footer {
+  background-color: var(--color-black-text);
+  color: var(--color-yellow-bg);
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.topLine,
+.bottomLine {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-yellow-bg) 50%,
+    transparent 100%
+  );
+  animation: slide 5s linear infinite;
+}
+
+.bottomLine {
+  margin-top: 1.5rem;
+}
+
+@keyframes slide {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.icons a {
+  font-size: 1.6rem;
+  color: var(--color-yellow-bg);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icons a:hover {
+  color: #fff700;
+  transform: scale(1.3) rotate(-5deg);
+}
+
+.icons a:focus {
+  outline: none; /* enlève le contour */
+  color: var(--color-yellow-bg);
+  transform: none;
+}
+
+
+.rights {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}

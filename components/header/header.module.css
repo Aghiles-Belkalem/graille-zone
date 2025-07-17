@@ -1,0 +1,106 @@
+.header {
+  background-color: var(--color-black-text);
+  color: var(--color-yellow-bg);
+  position: sticky;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+.menuBtn {
+  font-size: 1.8rem;
+  color: var(--color-yellow-bg);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  z-index: 101;
+}
+
+/* Menu mobile fermé par défaut */
+.navLinks {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  position: absolute;
+  top: 60px;
+  right: 1.5rem;
+  background-color: var(--color-black-text);
+  padding: 1.2rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.navLinks.open {
+  display: flex;
+}
+
+.navLinks li a,
+.navLinks li button {
+  color: var(--color-yellow-bg);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.navLinks li a:hover,
+.navLinks li button:hover,
+.navLinks li a:focus,
+.navLinks li button:focus {
+  color: var(--color-yellow-bg);
+  outline: none;
+  text-shadow: 0 0 5px var(--color-yellow-bg);
+}
+
+/* Desktop */
+@media (min-width: 600px) {
+  .menuBtn {
+    display: none;
+  }
+
+  .navLinks {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    gap: 2.5rem;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .navLinks li a,
+  .navLinks li button {
+    padding: 0;
+    font-size: 1rem;
+    color: var(--color-yellow-bg);
+  }
+}

@@ -1,0 +1,53 @@
+/* imageModal.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1rem;
+}
+
+.modal {
+  position: relative;
+  background-color: #111;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.1);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 80vw;
+  height: 60vh;
+  max-width: 700px;
+  max-height: 80vh;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #ffe600;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}

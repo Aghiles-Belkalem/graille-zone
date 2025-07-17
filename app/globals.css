@@ -1,42 +1,117 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-yellow-bg: #f7e600;   /* jaune doux */
+  --color-black-text: #1a1a1a;  /* noir doux */
+  --color-black-hover: #000000; /* noir plus profond au hover */
+  --font-main: 'Geist Sans', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* Reset basique */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-yellow-bg);
+  color: var(--color-black-text);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  padding: 1rem; /* petit padding pour mobile */
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--color-black-text);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a:hover,
+a:focus {
+  color: var(--color-black-hover);
+  outline: none;
+}
+
+main {
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+/* Pour tablettes et plus grands */
+@media (min-width: 600px) {
+  body {
+    padding: 2rem;
+  }
+  
+  main {
+    max-width: 720px;
+    padding: 0 1rem;
   }
 }
+
+/* Pour écrans desktop */
+@media (min-width: 900px) {
+  main {
+    max-width: 960px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 1rem;
+  background: var(--color-black-text);
+  border-radius: 1.2rem;
+  box-shadow: 0 0 25px var(--color-yellow-bg);
+  animation: slideUp 0.4s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-yellow-bg);
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.85);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ 
